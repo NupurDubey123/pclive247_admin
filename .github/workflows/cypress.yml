@@ -1,0 +1,37 @@
+name: CI/CD Pipeline
+
+on:
+  [push]
+
+jobs:
+  cypress-run:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Adjust this to the Node.js version you use
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Cypress
+        run: npx cypress install
+
+      - name: Run Cypress tests in order
+        run: |
+          npx cypress run --spec "cypress/e2e/login.js"
+          npx cypress run --spec "cypress/e2e/dashboard.js"
+          npx cypress run --spec "cypress/e2e/user.js"
+          npx cypress run --spec "cypress/e2e/category.js"
+
+      - name: Upload Cypress screenshots
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots/

@@ -50,7 +50,7 @@ describe('Admin Dashboard scenarios', () => {
                 
     })
 
-    it.only('Sorting of Name column when column header is clicked', () => {
+    it('Sorting of Name column when column header is clicked', () => {
         // Get the table column header and click to sort (e.g., sorting by 'Name' column)
         //cy.get('[class="sort-icon"]').eq(0).click();
         cy.wait(2000);
