@@ -63,13 +63,16 @@ describe('Admin Dashboard scenarios', () => {
   
 //  // Date range Filter  - Custom date
      
-//         cy.wait(2000)
-//         cy.contains('Date Range').click()
-//         cy.contains('Custom dates').click()
-//         cy.get('[placeholder="Select Date Range"]').click()          
-//         cy.get('[aria-label="Choose Wednesday, August 14th, 2024"]').click()
-//         cy.get('[aria-label="Choose Wednesday, August 14th, 2024"]').click()
-//         cy.contains('Reset All').click()
+         cy.wait(2000)
+         cy.contains('Date Range').click()
+         cy.contains('Custom dates').click()
+         cy.get('[type="text"]').eq(1).click()
+         const currentDate = new Date();
+         const currentDay = currentDate.getDate(); 
+         console.log(currentDay);
+         cy.get('.react-datepicker__month').find('div').contains('1').click({force:true})
+         cy.get('.react-datepicker__month').find('div').contains(currentDay).click({force:true})
+         cy.contains('Reset All').click()
 
  // Filter - Filter by Status (Active)
         cy.wait(2000)
@@ -124,7 +127,7 @@ describe('Admin Dashboard scenarios', () => {
         cy.wait(500)
         cy.contains('Reset All').click()
 
-//Filters - Filters by Verification    
+    //Filters - Filters by Verification    
         cy.wait(2000)
         cy.contains("Filter by").click()
         cy.contains("Verification").realHover()
@@ -136,7 +139,7 @@ describe('Admin Dashboard scenarios', () => {
         cy.get('[class="top-container"]').click()
         cy.wait(500)
         cy.contains('Reset All').click()
-
+        
 
     })
 

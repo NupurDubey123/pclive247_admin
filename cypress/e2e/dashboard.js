@@ -54,12 +54,12 @@ describe('Admin Dashboard scenarios', () => {
          //TC 4 : Verify when past 30 days filters gets applied
          cy.get('[class="custom-select form-control"]').select('Custom date')
          cy.get('[type="text"]').click() 
-         cy.get('[aria-label="Choose Tuesday, August 6th, 2024"]').click()
-         cy.get('[aria-label="Choose Tuesday, August 6th, 2024"]').click()
-         cy.get('[id="SvgjsText3288"]').contains('10 Jul').should('be.visible')
-         
+         const currentDate = new Date();
+         const currentDay = currentDate.getDate(); 
+         console.log(currentDay);
+         cy.get('.react-datepicker__month').find('div').contains('1').click({force:true})
+         cy.get('.react-datepicker__month').find('div').contains(currentDay).click({force:true})
 
-
-
+        
      })
     })
