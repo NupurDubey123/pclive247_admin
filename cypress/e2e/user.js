@@ -72,6 +72,7 @@ describe('Admin Dashboard scenarios', () => {
          console.log(currentDay);
          cy.get('.react-datepicker__month').find('div').contains('1').click({force:true})
          cy.get('.react-datepicker__month').find('div').contains(currentDay).click({force:true})
+         cy.wait(2000)
          cy.contains('Reset All').click()
 
  // Filter - Filter by Status (Active)
@@ -101,7 +102,7 @@ describe('Admin Dashboard scenarios', () => {
         cy.wait(500)
         cy.contains('Reset All').click()
 
-//Filters - Filter by User type
+// //Filters - Filter by User type
         // Seller  
         cy.wait(2000)
         cy.contains("Filter by").click()
@@ -110,6 +111,8 @@ describe('Admin Dashboard scenarios', () => {
         cy.get('[class="Item_item__azkIp itemClass"]').eq(2).realHover()
         cy.contains('Seller').click()
         cy.wait(500)
+       // cy.get('[class="apply"]').find('div').eq(1).click()
+       cy.get('.Submenu_left__HuihD').find('div').contains('Apply').click({force:true});
         cy.contains('Apply').click()        
         cy.get('[class="top-container"]').click()
         cy.wait(500)
@@ -127,7 +130,7 @@ describe('Admin Dashboard scenarios', () => {
         cy.wait(500)
         cy.contains('Reset All').click()
 
-    //Filters - Filters by Verification    
+//Filters - Filters by Verification    
         cy.wait(2000)
         cy.contains("Filter by").click()
         cy.contains("Verification").realHover()

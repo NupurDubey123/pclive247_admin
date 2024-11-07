@@ -26,7 +26,7 @@
 //--- Auto-suggestions  for cypress
 ///< referance types ="Cypress"/>
 require("cypress-real-events")
-Cypress.Commands.add("login", (email,pass) => {
+Cypress.Commands.add("login", () => {
     cy.get('[type="email"]').type('tester@admin.com')
          cy.get('[type="password"]').type('Admin@123')
          cy.get('[type="button"]').contains('Sign in').click()
@@ -36,6 +36,11 @@ Cypress.Commands.add("login", (email,pass) => {
          cy.get('[inputmode="text"]').each(($input, index) => {
          cy.wrap($input).type(values[index]);
     });
-    
     cy.get('[type="button"]').contains('Submit').click()
   });
+
+  Cypress.Commands.add('logout', ()=>{
+     cy.get('.align-items-center.media').last().click({force:true})
+     cy.get('.dropdown-menu-arrow').contains('Logout').click({force:true})
+     cy.contains('LOGIN').should('exist')
+  })
