@@ -1,7 +1,7 @@
 describe('Admin Dashboard scenarios', () => {
     
      it ('Login flow with positive negative scenarios',{ pageLoadTimeout: 120000 },() =>{
-         cy.visit('https://qa-admin.pclive247.com/')
+         cy.visit('/')
          cy.contains('LOGIN').should('be.visible')
          // Pre-requisite Setep :Admin logged in with valid credentials
          cy.reload()
